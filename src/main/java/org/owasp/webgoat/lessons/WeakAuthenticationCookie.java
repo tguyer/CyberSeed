@@ -141,6 +141,7 @@ public class WeakAuthenticationCookie extends LessonAdapter
             if (!loginID.equals(""))
             {
                 Cookie newCookie = new Cookie(AUTHCOOKIE, loginID);
+                newCookie.setSecure(true);
                 s.setMessage(getLabelManager().get("IdentityRemembered"));
                 s.getResponse().addCookie(newCookie);
 

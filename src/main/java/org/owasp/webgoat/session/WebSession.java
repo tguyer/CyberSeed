@@ -273,6 +273,7 @@ public class WebSession {
         for (int loop = 0; loop < cookies.length; loop++) {
             if (!cookies[loop].getName().startsWith("JS")) {// skip jsessionid cookie
                 cookies[loop].setMaxAge(0);// mark for deletion by browser
+                cookies[loop].setSecure(true);//set cookie to secure only
                 response.addCookie(cookies[loop]);
             }
         }
