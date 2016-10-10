@@ -43,7 +43,6 @@ import org.owasp.webgoat.session.WebSession;
  */
 public class Catcher extends HammerHead
 {
-
 	/**
 	 * 
 	 */
