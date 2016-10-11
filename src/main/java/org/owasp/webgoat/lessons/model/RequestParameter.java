@@ -40,8 +40,8 @@ public class RequestParameter implements Comparable<RequestParameter> {
     private final String value;
 
     public RequestParameter(String name, String value) {
-        this.name = name;
-        this.value = value;
+        this.name = name.replace("<", "&lt;").replace("&", "&amp;");
+        this.value = value.replace("<", "&lt;").replace("&", "&amp;");
     }
 
     /**

@@ -54,6 +54,8 @@ public class RestartLessonService extends BaseService {
         if(currentScreen > 0){
             ws.restartLesson(currentScreen);
         }
-        return ws.getCurrentLesson().getLink();
+        String link = ws.getCurrentLesson().getLink();
+        String escaped = link.replace("<", "&lt;").replace("&", "&amp;");
+        return escaped;
     }
 }
