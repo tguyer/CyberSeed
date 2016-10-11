@@ -190,8 +190,9 @@ public class HttpOnly extends LessonAdapter
             buffer = new Date().toString().getBytes();
 
             md.update(buffer);
-            value = encoder.encode(md.digest());
+            value = encoder.encode(SanitizeHttp(md.digest()));
             original = value;
+            
 
         } catch (Exception e)
         {
@@ -232,9 +233,26 @@ public class HttpOnly extends LessonAdapter
         }
         else
         {
+            
             response.setHeader("Set-Cookie", UNIQUE2U + "=" + cookie + ";");
             original = cookie;
         }
+    }
+    
+    private String SanitizeHttp(String input){
+    
+        input = Normalizer.normalize(input, Form.NFKC);
+        
+        Pattern regex = Pattern.compile("[$&+,:;=?@#|'<>.^*()%!-]");
+        Matcher m = regex.matcher(input);
+        
+        boolean SpecialFound = m.find();
+    
+        if(SpecialFound){
+            input.replaceAll(("[$&+,:;=?@#|'<>.^*()%!-]", "");
+        } 
+        
+        return input;
     }
 
     private ElementContainer makeContent(WebSession s)
