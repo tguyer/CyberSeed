@@ -214,12 +214,14 @@ public class HttpOnly extends LessonAdapter
         if (cookie == null || cookie.equals("HACKED"))
         {
             response.setHeader("Set-Cookie", UNIQUE2U + "=" + value + "; HttpOnly");
-            original = value;
+            String escaped = value.replace("<", "&lt;").replace("&", "&amp;").replace(System.getProperty("line.separator"), "");
+            original = escaped;
         }
         else
         {
             response.setHeader("Set-Cookie", UNIQUE2U + "=" + cookie + "; HttpOnly");
-            original = cookie;
+            String escaped = value.replace("<", "&lt;").replace("&", "&amp;").replace(System.getProperty("line.separator"), "");
+            original = escaped;
         }
     }
 
@@ -232,13 +234,15 @@ public class HttpOnly extends LessonAdapter
         if (cookie == null || cookie.equals("HACKED"))
         {
             response.setHeader("Set-Cookie", UNIQUE2U + "=" + value + ";");
-            original = value;
+            String escaped = value.replace("<", "&lt;").replace("&", "&amp;").replace(System.getProperty("line.separator"), "");
+            original = escaped;
         }
         else
         {
             
             response.setHeader("Set-Cookie", UNIQUE2U + "=" + cookie + ";");
-            original = cookie;
+            String escaped = value.replace("<", "&lt;").replace("&", "&amp;").replace(System.getProperty("line.separator"), "");
+            original = escaped;
         }
     }
     
