@@ -1,9 +1,12 @@
 
 package org.owasp.webgoat.lessons;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.security.MessageDigest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ecs.Element;
@@ -190,8 +193,9 @@ public class HttpOnly extends LessonAdapter
             buffer = new Date().toString().getBytes();
 
             md.update(buffer);
-            value = encoder.encode(md.digest());
+            value = encoder.encode(SanitizeHttp(md.digest().toString()));
             original = value;
+            
 
         } catch (Exception e)
         {
@@ -232,9 +236,26 @@ public class HttpOnly extends LessonAdapter
         }
         else
         {
+            
             response.setHeader("Set-Cookie", UNIQUE2U + "=" + cookie + ";");
             original = cookie;
         }
+    }
+    
+    private byte[] SanitizeHttp(String input){
+    
+        //input = Normalizer.normalize(input, Form.NFKC);
+        
+        Pattern regex = Pattern.compile("[$&+,:;=?@#|'<>.^*()%!-]");
+        Matcher m = regex.matcher(input);
+        
+        boolean SpecialFound = m.find();
+    
+        if(SpecialFound){
+            input.replaceAll("[$&+,:;=?@#|'<>.^*()%!-]", "");
+        } 
+        
+        return input.getBytes();
     }
 
     private ElementContainer makeContent(WebSession s)

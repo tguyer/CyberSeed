@@ -7,10 +7,13 @@
 <title>HTTP Splitting</title>
 </head>
 <body>
-<% response.sendRedirect(request.getContextPath() + "/attack?" +
- 		        "Screen=" + request.getParameter("Screen") +
- 		        "&menu=" + request.getParameter("menu") +
- 		        "&fromRedirect=yes&language=" + request.getParameter("language")); 
+$string = request.getContextPath();
+$new_string = filter_var($string, FILTER_SANITIZE_STRING);
+    
+<% response.sendRedirect($new_string + "/attack?" +
+ 		        "Screen=" + filter_var(request.getParameter("Screen")) +
+ 		        "&menu=" + filter_var(request.getParameter("menu")) +
+ 		        "&fromRedirect=yes&language=" + filter_var(request.getParameter("language"))); 
 %>
 </body>
 </html>
