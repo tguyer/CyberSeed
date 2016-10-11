@@ -351,7 +351,7 @@ public class UncheckedEmail extends LessonAdapter
         });
 
         session.setDebug(debug);
-
+        SanitizeCRLF(from);
         Message msg = new MimeMessage(session);
         InternetAddress addressFrom = new InternetAddress(from);
         msg.setFrom(addressFrom);
@@ -361,14 +361,31 @@ public class UncheckedEmail extends LessonAdapter
         // {
         addressTo[0] = new InternetAddress(recipients);
         // }
+       
         msg.setRecipients(Message.RecipientType.TO, addressTo);
-
+ 
         // Setting the Subject and Content Type
-        msg.setSubject(subject);
+        msg.setSubject(SanitizeCRLF(subject)); 
         msg.setContent(message, "text/plain");
         Transport.send(msg);
 
         return msg;
+    }
+    
+    private String SanitizeCRLF(String input){
+    
+        input = Normalizer.normalize(input, Form.NFKC);
+        
+        Pattern regex = Pattern.compile("[$&+,:;=?@#|'<>.^*()%!-]");
+        Matcher m = regex.matcher(input);
+        
+        boolean SpecialFound = m.find();
+    
+        if(SpecialFound){
+            input.replaceAll(("[$&+,:;=?@#|'<>.^*()%!-]", "");
+        } 
+        
+        return input;
     }
 
     /**
