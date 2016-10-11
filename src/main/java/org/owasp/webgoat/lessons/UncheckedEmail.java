@@ -2,12 +2,17 @@
 package org.owasp.webgoat.lessons;
 
 import java.text.Format;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -382,7 +387,7 @@ public class UncheckedEmail extends LessonAdapter
         boolean SpecialFound = m.find();
     
         if(SpecialFound){
-            input.replaceAll(("[$&+,:;=?@#|'<>.^*()%!-]", "");
+            input = input.replaceAll("[$&+,:;=?@#|'<>.^*()%!-]", "");
         } 
         
         return input;
