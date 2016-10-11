@@ -86,7 +86,11 @@ public class SilentTransactions extends LessonAdapter
                     result
                             .append("Now you can send out a spam email containing this link and whoever clicks on it<br>");
                     result.append(" and happens to be logged in the same time will loose their money !!");
-                    out.print(result.toString());
+                    
+                    //Sanitize the result string
+                    String res = result.toString();
+                    String escapedResult = res.replace("<", "&lt;").replace("&", "&amp;");
+                    out.print(escapedResult);
                     out.flush();
                     out.close();
                     getLessonTracker(s).setCompleted(true);

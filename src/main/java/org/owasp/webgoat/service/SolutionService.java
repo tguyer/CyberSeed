@@ -56,7 +56,8 @@ public class SolutionService extends BaseService {
     String showSolution(HttpSession session) {
         WebSession ws = getWebSession(session);
         String source = getSolution(ws);
-        return source;
+        String escaped = source.replace("<", "&lt;").replace("&", "&amp;");
+        return escaped;
     }
 
     protected String getSolution(WebSession s) {

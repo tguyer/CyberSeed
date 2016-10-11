@@ -58,10 +58,11 @@ public class SourceService extends BaseService {
     String showSource(HttpSession session) {
         WebSession ws = getWebSession(session);
         String source = getSource(ws);
-        if (source == null) {
-            source = "No source listing found";
+        String escaped = source.replace("<", "&lt;").replace("&", "&amp;");
+        if (escaped == null) {
+            escaped = "No source listing found";
         }
-        return source;
+        return escaped;
         //SourceListing sl = new SourceListing();
         //sl.setSource(source);
         //return sl;
