@@ -197,6 +197,7 @@ public class WeakSessionID extends LessonAdapter
         {
             weakid = newCookie(s);
             Cookie cookie = new Cookie(SESSIONID, weakid);
+            cookie.setSecure(true);
             s.getResponse().addCookie(cookie);
         }
 

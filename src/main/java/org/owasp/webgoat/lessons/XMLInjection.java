@@ -231,9 +231,9 @@ public class XMLInjection extends LessonAdapter
         b.setName("SUBMIT");
         ec.addElement(b);
 
-        if (s.getParser().getRawParameter("SUBMIT", "") != "")
+        if (!s.getParser().getRawParameter("SUBMIT", "").equals(""))
         {
-            if (s.getParser().getRawParameter("check1004", "") != "")
+            if (!s.getParser().getRawParameter("check1004", "").equals(""))
             {
                 makeSuccess(s);
             }
@@ -243,7 +243,7 @@ public class XMLInjection extends LessonAdapter
                 for (int i = 1001; i < 1001 + rewardsMap.size(); i++)
                 {
 
-                    if (s.getParser().getRawParameter("check" + i, "") != "")
+                    if (!s.getParser().getRawParameter("check" + i, "").equals(""))
                     {
                         shipment.append(((Reward) rewardsMap.get(i)).getName() + "<br>");
                     }
