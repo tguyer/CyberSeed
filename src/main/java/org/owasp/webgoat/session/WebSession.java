@@ -274,6 +274,7 @@ public class WebSession {
             if (!cookies[loop].getName().startsWith("JS")) {// skip jsessionid cookie
                 cookies[loop].setMaxAge(0);// mark for deletion by browser
                 cookies[loop].setSecure(true); //Mark for secure transmission
+                cookies[loop].setHttpOnly(true);//Mark as HTTP only
                 response.addCookie(cookies[loop]);
             }
         }
