@@ -104,16 +104,4 @@ public class WebgoatProperties extends Properties {
 
         return result;
     }
-
-    public static void main(String[] args) {
-        WebgoatProperties properties = null;
-        try {
-            properties = new WebgoatProperties("C:\\webgoat.properties");
-        } catch (IOException e) {
-            System.out.println("Error loading properties");
-            e.printStackTrace();
-        }
-        System.out.println(properties.getProperty("CommandInjection.category"));
-    }
-
 }

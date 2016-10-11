@@ -545,49 +545,6 @@ public class Encoding extends LessonAdapter
         return hexBuff.toString().toUpperCase();
     }
 
-    /**
-     * The main program for the Encoding class
-     * 
-     * @param args
-     *            The command line arguments
-     */
-
-    public static void main(String[] args)
-    {
-        try
-        {
-            String userInput = args[0];
-            String userKey = args[1];
-            System.out.println("Working with: " + userInput);
-            System.out.print("Base64 encoding: ");
-            System.out.println(base64Encode(userInput) + " : " + base64Decode(userInput));
-            System.out.print("Entity encoding: ");
-            System.out.println(HtmlEncoder.encode(userInput) + " : " + HtmlEncoder.decode(userInput));
-            System.out.print("Password based encryption (PBE): ");
-            System.out.println(encryptString(userInput, userKey) + " : " + decryptString(userInput, userKey));
-            System.out.print("MD5 hash: ");
-            System.out.println(hashMD5(userInput) + " : " + "Cannot reverse a hash");
-            System.out.print("SHA-256 hash: ");
-            System.out.println(hashSHA(userInput) + " : " + "Cannot reverse a hash");
-            System.out.print("Unicode encoding: ");
-            System.out.println("Not Implemented" + " : " + "Not Implemented");
-            System.out.print("URL encoding: ");
-            System.out.println(urlEncode(userInput) + " : " + urlDecode(userInput));
-            System.out.print("Hex encoding: ");
-            System.out.println(hexEncode(userInput) + " : " + hexDecode(userInput));
-            System.out.print("Rot13 encoding: ");
-            System.out.println(rot13(userInput) + " : " + rot13(userInput));
-            System.out.print("XOR with password: ");
-            System.out.println(xorEncode(userInput, userKey) + " : " + xorDecode(userInput, userKey));
-            System.out.print("Double unicode encoding is...");
-            System.out.println("Not Implemented" + " : " + "Not Implemented");
-            System.out.print("Double URL encoding: ");
-            System.out.println(urlEncode(urlEncode(userInput)) + " : " + urlDecode(urlDecode(userInput)));
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Description of the Method
