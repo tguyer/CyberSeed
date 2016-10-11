@@ -169,6 +169,7 @@ public class Challenge2Screen extends SequentialLessonAdapter
         ec.addElement(input);
 
         Cookie newCookie = new Cookie(USER_COOKIE, Encoding.base64Encode(user));
+        newCookie.setSecure(true);
         s.getResponse().addCookie(newCookie);
         phoneHome(s, "User: " + username + " --> " + "Pass: " + password);
         // <END_OMIT_SOURCE>
@@ -192,6 +193,7 @@ public class Challenge2Screen extends SequentialLessonAdapter
         // <START_OMIT_SOURCE>
 
         Cookie newCookie = new Cookie(USER_COOKIE, Encoding.base64Encode(user));
+        newCookie.setSecure(true);
         s.getResponse().addCookie(newCookie);
 
         ElementContainer ec = new ElementContainer();
