@@ -138,7 +138,7 @@ public class WeakAuthenticationCookie extends LessonAdapter
                 loginID = encode("aspect12345");
             }
 
-            if (loginID != "")
+            if (!loginID.equals(""))
             {
                 Cookie newCookie = new Cookie(AUTHCOOKIE, loginID);
                 s.setMessage(getLabelManager().get("IdentityRemembered"));
