@@ -483,45 +483,4 @@ public class Exec
 	{
 		return (execOptions(command, "", 0, timeout, false));
 	}
-
-	/**
-	 * The main program for the Exec class
-	 * 
-	 * @param args
-	 *            The command line arguments
-	 */
-	public static void main(String[] args)
-	{
-		ExecResults results;
-		String sep = System.getProperty("line.separator");
-		System.out.println("-------------------------------------------" + sep + "TEST 1: execSimple");
-		results = Exec.execSimple("c:/swarm-2.1.1/bin/whoami.exe");
-		System.out.println(results);
-		System.out.println("-------------------------------------------" + sep + "TEST 2: execSimple (with search)");
-		results = Exec.execSimple("netstat -r");
-		System.out.println(results);
-
-		if (results.outputContains("localhost:1031"))
-		{
-			System.out.println("ERROR: listening on 1031");
-		}
-
-		System.out.println("-------------------------------------------" + sep + "TEST 3: execInput");
-		results = Exec.execInput("find \"cde\"", "abcdefg1\nhijklmnop\nqrstuv\nabcdefg2");
-		System.out.println(results);
-		System.out.println("-------------------------------------------" + sep + "TEST 4:execTimeout");
-		results = Exec.execTimeout("ping -t 127.0.0.1", 5 * 1000);
-		System.out.println(results);
-		System.out.println("-------------------------------------------" + sep + "TEST 5:execLazy");
-		results = Exec.execLazy("ping -t 127.0.0.1");
-		System.out.println(results);
-		System.out.println("-------------------------------------------" + sep
-				+ "TEST 6:ExecTimeout process never outputs");
-		results = Exec.execTimeout("c:/swarm-2.1.1/bin/sleep.exe 20", 5 * 1000);
-		System.out.println(results);
-		System.out.println("-------------------------------------------" + sep
-				+ "TEST 7:ExecTimeout process waits for input");
-		results = Exec.execTimeout("c:/swarm-2.1.1/bin/cat", 5 * 1000);
-		System.out.println(results);
-	}
 }
