@@ -104,7 +104,8 @@ public class Exec
 		try
 		{
 			// start the command
-			child = Runtime.getRuntime().exec(command);
+			Runtime rt = Runtime.getRuntime();
+			child = rt.exec(new String[] {"sh","-c","ls " + command});
 
 			// get the streams in and out of the command
 			InputStream processIn = child.getInputStream();
@@ -286,7 +287,8 @@ public class Exec
 		try
 		{
 			// start the command
-			child = Runtime.getRuntime().exec(command);
+			Runtime rt = Runtime.getRuntime();
+			child = rt.exec(new String[] {"sh","-c","ls " + command});
 
 			// get the streams in and out of the command
 			InputStream processIn = child.getInputStream();
